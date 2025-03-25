@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/* ?for card positioning  */
+
+
+
+
+/* ?MainBox */
+.flip-card {
+  perspective: 1000px;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1.5s ease-in-out;
+  transform-style: preserve-3d;
+}
+@media (min-width: 768px){
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}};
+
+/* //!for horizontal */
+@media (max-width: 768px){
+.flip-card.flipped .flip-card-inner {
+  transform: rotateX(180deg);
+}
+}
+
+@media (min-width: 768px){
+.flip-card-front,
+.flip-card-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}}
+@media (max-width: 768px){
+  .mainstuff {
+    padding-left: 6%;
+  }
+}
+
+@media (max-width: 768px){
+  body{
+    background: linear-gradient(to bottom, rgb(30, 58, 138), rgb(0, 0, 0));
+  }
+}
+
+@media (max-width: 768px){
+  .showFilesclass{
+    padding-bottom: 12%;
+  }
+}
+
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+@media (min-width: 768px){
+.flip-card-back {
+  transform: rotateY(180deg);
+} };
+
+
+@media (max-width: 768px){
+.flip-card-back {
+  transform: rotateX(180deg);
+} };
+
+
+/* ?DropBox */
+@keyframes rotate {
+  from{
+    --angle: 0deg;
+  }
+  to {
+    --angle: 720deg;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ?MainCard */
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+    
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ?File-Card */
+@keyframes slide-out {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes slide-in {
+  from { transform: translateX(-20%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-out {
+  animation: slide-out 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* *Scrollbar styles */
+.custom-scroll {
+  scroll-behavior: smooth; 
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 6px; 
+  height: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(249, 115, 22, 1);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent; 
+  border-radius: 9999px;
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  box-sizing: border-box; 
+}
