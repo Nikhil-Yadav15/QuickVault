@@ -12,7 +12,6 @@ import pako from 'pako';
 import CircularProgress from './componets/circluarProgressBar';
 import { useRouter } from "next/navigation";
 import QRCodePopup from './componets/popup';
-import Footer from './componets/footer';
 import "reactjs-popup/dist/index.css";
 
 
