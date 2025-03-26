@@ -38,7 +38,7 @@ export default function Home() {
     margin: "2px auto",
     borderWidth: "8px",
   };
-  const CHUNK_SIZE = 9 * 1024 * 1024;
+  const CHUNK_SIZE = 5 * 1024 * 1024;
   const MAX_FILE_SIZE = 100 * 1024 * 1024;
 
   const handleKeyDown = (event) => {
