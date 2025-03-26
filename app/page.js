@@ -14,20 +14,9 @@ import { useRouter } from "next/navigation";
 import QRCodePopup from './componets/popup';
 import Footer from './componets/footer';
 import "reactjs-popup/dist/index.css";
-import { usePathname, useSearchParams } from 'next/navigation';
 
 
 export default function Home() {
-  // const pathname = usePathname();
-  // const searchParams = useSearchParams();
-  // useEffect(() => {
-  //   fetch('/api/track', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // }, [pathname, searchParams]);
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [totalSize, setTotalSize] = useState(0);
@@ -164,7 +153,7 @@ export default function Home() {
 
   const showBenefit = () => {
     return (
-      <div className=" text-center justify-center items-center p-2">
+      <div className="flex flex-col text-center justify-center items-center p-3 md:pl-5">
         <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent mb-6">
           Effortless File Transfers, Simplified.
         </h2>
@@ -364,7 +353,7 @@ export default function Home() {
                 className="mainCard flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[700px] rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
                 style={{
                   background: `
-                  linear-gradient(to bottom right, #1e3a8a, #000000) padding-box,
+                  linear-gradient(to bottom left, #1e3a8a, #000000) padding-box,
                   linear-gradient(var(--angle), #0f766e, #14b8a6, #0f766e) border-box
                 `,
                   border: "4px solid transparent",
@@ -372,7 +361,7 @@ export default function Home() {
                   flexDirection: "column",
                 }}
               >
-                <h2 className="text-4xl text-center font-bold bg-gradient-to-r from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent pb-8">
+                <h2 className="text-4xl text-center font-bold bg-gradient-to-l from-green-400 via-green-500 to-emerald-300 bg-clip-text text-transparent pb-8">
                   Add your files here
                 </h2>
 
@@ -414,7 +403,7 @@ export default function Home() {
                   <div className="space-y-1">
                     <label
                       htmlFor="url-input"
-                      className="block text-center text-2xl font-medium bg-gradient-to-r from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent mb-2 transition-colors duration-200"
+                      className="block text-center text-2xl font-medium bg-gradient-to-l from-green-400 via-green-500 to-emerald-500 bg-clip-text text-transparent mb-2 transition-colors duration-200"
                     >
                       Enter your Custom URL
                       <span className="text-blue-500 ml-1">*</span>
