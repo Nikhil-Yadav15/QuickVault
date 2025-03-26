@@ -40,6 +40,22 @@ export default function Home() {
   const CHUNK_SIZE = 5 * 1024 * 1024;
   const MAX_FILE_SIZE = 100 * 1024 * 1024;
 
+  useEffect(() => {
+    const logVisit = async () => {
+      try {
+        const response = await fetch('/api/track', {
+          method: 'POST',
+        });
+        if (!response.ok) {
+          console.error('Failed to log visit');
+        }
+      } catch (error) {
+        console.error('Error logging visit:', error);
+      }
+    };
+    logVisit();
+  }, []);
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleUploadBtn();
