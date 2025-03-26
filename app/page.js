@@ -70,7 +70,7 @@ export default function Home() {
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop, multiple: true, maxSize: MAX_FILE_SIZE, onDropRejected: () => {
-      setErrorMessage("Individual file size too large. Maximum size is 50MB.");
+      setErrorMessage(`Maximum size is ${formatBytes(MAX_FILE_SIZE)}.`);
     }
   });
   const removeFileThroughX = (indexToRemove) => {
