@@ -1,25 +1,29 @@
+import { headers } from 'next/headers';
 import clientPromise from "@/lib/mongodb";
-import { NextResponse } from 'next/server';
 
 export async function POST(request) {
-    try {
-        const ip = request.headers.get('x-forwarded-for') || request.ip || 'unknown';
-    const userAgent = request.headers.get('user-agent') || 'unknown';
-    const timestamp = new Date();
+  const headersList = await headers();
+  const ip = headersList.get('x-forwarded-for')?.split(',')[0] || headersList.get('x-real-ip') || 'Unknown';
+  const userAgent = headersList.get('user-agent') || 'Unknown';
+  const referer = headersList.get('referer') || 'Direct';
+  const client = await clientPromise;
+  const db = client.db(process.env.MONGODB_DB);
+  const collections = db.collection(process.env.MONGODB_COLLECTION_VISITS);
 
-    const visitData = {
-      ip,         
-      userAgent,
-      timestamp,  
-    };
+  const timestamp = new Date();
+  const istOffset = 5.5 * 60;
+  const istTimestamp = new Date(timestamp.getTime() + istOffset * 60 * 1000);
 
-        const client = await clientPromise;
-        const db = client.db(process.env.MONGODB_DB);
-        const collection = db.collection(process.env.MONGODB_COLLECTION_VISITS);
-        await collection.insertOne(visitData);
-        return NextResponse.json({ message: 'Visited' }, { status: 200 });
-    }catch (error) {
-        console.error('Error:', error);
-        return NextResponse.json({ message: 'visited' }, { status: 200 });
-      }
+  await collections.insertOne({
+    ip,
+    userAgent,
+    referer,
+    page: '/',
+    timestamp: istTimestamp,
+  });
+
+  return new Response(JSON.stringify({ success: true }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
