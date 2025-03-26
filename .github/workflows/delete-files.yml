@@ -1,0 +1,18 @@
+name: Daily File Deletion
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  delete-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call API to delete old files
+        run: |
+          curl --request GET \
+          --url 'https://share-vault-phi.vercel.app/api/auto_delete' \
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
