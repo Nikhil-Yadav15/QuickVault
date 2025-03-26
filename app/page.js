@@ -293,6 +293,7 @@ export default function Home() {
             const finalVerdict = await res.json();
           } catch (error) {
             setUploading(false);
+            setIsFlipped(!isFlipped);
           } finally {
             setPercentage(100);
           }
