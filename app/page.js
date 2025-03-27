@@ -124,7 +124,7 @@ export default function Home() {
           }}>
           <div className="sticky top-0 z-10  pb-1">
             <h1 className="text-2xl font-bold bg-gradient-to-b from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent text-center border-b-2 border-green-500 mb-4 pb-2">
-              Uploaded Files:
+              Files to Upload:
             </h1>
             <div className="relative w-full h-6 bg-gray-200 rounded-full overflow-hidden mb-4">
               <div
