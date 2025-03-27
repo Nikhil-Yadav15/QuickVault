@@ -18,7 +18,7 @@ const Navbar = () => {
               height={40}
               className="mr-2"
             />
-            <span>ShareVault</span>
+            <span>QuickVault</span>
           </div>
         </NextLink>
       </div>
