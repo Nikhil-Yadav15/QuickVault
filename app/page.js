@@ -379,8 +379,8 @@ export default function Home() {
                   flexDirection: "column",
                 }}
               >
-                <h2 className="text-4xl text-center font-bold bg-gradient-to-l from-green-400 via-green-500 to-emerald-300 bg-clip-text text-transparent pb-8">
-                  Add your files here
+                <h2 className={`text-4xl text-center font-bold ${atleastAddfile ? "bg-gradient-to-r from-red-700 to-red-800" : "bg-gradient-to-l from-green-400 via-green-500 to-emerald-300"} bg-clip-text text-transparent pb-8`}>
+                  {atleastAddfile ? "Add a File First!" : "Add your files here"}
                 </h2>
 
                 <div
@@ -457,8 +457,6 @@ export default function Home() {
                   {/* //!adding spinner with button */}
                   {changeURLbg && <p className="text-sm font-bold text-red-400 mt-2">
                     Oops! That URL is taken. Try another unique one!</p>}
-                  {atleastAddfile && <p className="text-[20px] mt-2 text-center font-bold bg-gradient-to-t from-red-600 via-red-500 to-gray-500 bg-clip-text text-transparent">
-                    Add a File first!</p>}
                   {SpinnerLoading ? (
                     <>
                       <ClipLoader loading={true} size={80} margin={15} speedMultiplier={1} color="#FFA500" cssOverride={SpinnerOverride} />
