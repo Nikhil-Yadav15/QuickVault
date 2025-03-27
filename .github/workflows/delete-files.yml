@@ -12,7 +12,7 @@ jobs:
       - name: Call API to delete old files
         run: |
           curl --request GET \
-          --url 'https://share-vault-phi.vercel.app/api/auto_delete' \
+          --url 'https://quickvault.vercel.app/api/auto_delete' \
           --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
