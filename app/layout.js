@@ -13,13 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "ShareVault",
+  title: "QuickVault",
   description: "A simple file sharing app",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+    <Head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-bl from-blue-900 to-black`}>
         <Navbar />
