@@ -467,7 +467,7 @@ export default function Home() {
 
 
                     <button
-                      className={`mt-6  w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg shadow-md ${uploadBtnDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02] active:scale-95  hover:cursor-pointer hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'} transition-all duration-200 flex items-center justify-center gap-2 `}
+                      className={`mt-6  w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-cyan-600 text-white font-semibold rounded-lg shadow-md ${uploadBtnDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02] active:scale-95  hover:cursor-pointer hover:from-purple-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'} transition-all duration-200 flex items-center justify-center gap-2 `}
                       onClick={handleUploadBtn}
                       disabled={uploadBtnDisabled}
                     >
