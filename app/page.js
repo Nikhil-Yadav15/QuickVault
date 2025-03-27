@@ -69,9 +69,11 @@ export default function Home() {
 
     const newFileSize = acceptedFiles.reduce((acc, file) => acc + file.size, 0);
     if (totalSize + newFileSize > MAX_FILE_SIZE) {
-      setErrorMessage(`Total file size limit exceeded! Max allowed: ${MAX_FILE_SIZE / (1024 * 1024)}MB`);
+      setErrorMessage(`Maximum size is ${formatBytes(MAX_FILE_SIZE)}.`);
       return;
     }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTotalSize(prevTotal => prevTotal + newFileSize);
     setAtleastAddfile(false);
