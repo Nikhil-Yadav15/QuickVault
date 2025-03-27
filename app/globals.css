@@ -2,7 +2,15 @@
 
 /* ?for card positioning  */
 
+@media (min-width: 998px){
+  #url-input::placeholder {
+    font-size: 15px;
+  }};
 
+@media (max-width: 998px){
+  #url-input::placeholder {
+    font-size: 11px;
+  }};
 
 
 /* ?MainBox */
