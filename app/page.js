@@ -38,7 +38,7 @@ export default function Home() {
     borderWidth: "8px",
   };
   const CHUNK_SIZE = 5 * 1024 * 1024;
-  const MAX_FILE_SIZE = 1 *2024 * 1024 * 1024;
+  const MAX_FILE_SIZE = 1 * 1024 * 1024 * 1024;
 
   useEffect(() => {
     const logVisit = async () => {
