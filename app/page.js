@@ -457,7 +457,7 @@ export default function Home() {
                   {/* //!adding spinner with button */}
                   {changeURLbg && <p className="text-sm font-bold text-red-400 mt-2">
                     Oops! That URL is taken. Try another unique one!</p>}
-                  {atleastAddfile && <p className="text-[30px] text-center font-bold text-red-400 mt-2">
+                  {atleastAddfile && <p className="text-[20px] mt-2 text-center font-bold bg-gradient-to-t from-red-600 via-red-500 to-gray-500 bg-clip-text text-transparent">
                     Add a File first!</p>}
                   {SpinnerLoading ? (
                     <>
