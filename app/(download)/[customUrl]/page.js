@@ -8,7 +8,6 @@ import formatBytes from "../../componets/formatBytes";
 import pako from "pako";
 import JSZip from "jszip";
 import { useRouter } from "next/navigation";
-import Footer from "@/app/componets/footer";
 
 
 export default function DownloadFile({ params }) {
@@ -231,7 +230,6 @@ export default function DownloadFile({ params }) {
                     handleNotFound()
                 )}
             </div>
-            <Footer />
         </div>
     );
 }
