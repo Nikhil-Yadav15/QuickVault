@@ -433,7 +433,7 @@ export default function Home() {
                         onKeyDown={handleKeyDown}
                         value={customEmail}
                         onChange={(e) => {
-                          setCustomEmail(e.target.value.replace(/\s+/g, '-'));
+                          setCustomEmail(e.target.value.replace(/[^\w\s-]/g, '-').replace(/\s+/g, '-').replace(/-{2,}/g, '-').replace(/^-{2,}|-{2,}$/g, ''));
                           if (e.target.value) {
                             setUploadBtnDisabled(false);
                           }
