@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { customUrl, files } = await request.json();
+    const { customUrl, files, password } = await request.json();
 
     if (!customUrl || !files || files.length === 0) {
       return NextResponse.json(
@@ -19,6 +19,7 @@ export async function POST(request) {
     await collections.insertOne({
       customUrl,
       files,
+      password,
       uploadedAt: new Date(),
     });
 
