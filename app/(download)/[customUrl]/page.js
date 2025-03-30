@@ -65,7 +65,7 @@ export default function DownloadFile({ params }) {
                             seterror_forWrongPassword(true);
                         }
                     }} className="w-full py-3 hover:cursor-pointer rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition duration-200">
-                        Submit
+                        Verify
                     </button>
                 </div>
             </div>
