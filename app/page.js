@@ -13,9 +13,13 @@ import CircularProgress from './componets/circluarProgressBar';
 import { useRouter } from "next/navigation";
 import QRCodePopup from './componets/popup';
 import "reactjs-popup/dist/index.css";
+import SetPasswordPopup from './componets/SETpasswordPopup';
 
 
 export default function Home() {
+
+  const [password, setPasswordParent] = useState("");
+  
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [totalSize, setTotalSize] = useState(0);
@@ -306,6 +310,7 @@ export default function Home() {
               body: JSON.stringify({
                 customUrl: customEmail,
                 files: uploadedFiles,
+                password: password
               }),
             });
             const finalVerdict = await res.json();
@@ -457,6 +462,9 @@ export default function Home() {
                   {/* //!adding spinner with button */}
                   {changeURLbg && <p className="text-sm font-bold text-red-400 mt-2">
                     Oops! That URL is taken. Try another unique one!</p>}
+                   
+                   {!changeURLbg && <SetPasswordPopup setPasswordParent={setPasswordParent}/>}
+                   
                   {SpinnerLoading ? (
                     <>
                       <ClipLoader loading={true} size={80} margin={15} speedMultiplier={1} color="#FFA500" cssOverride={SpinnerOverride} />
