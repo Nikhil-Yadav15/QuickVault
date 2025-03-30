@@ -15,7 +15,12 @@ export async function POST(request) {
 
   if (!fileData) {
     return NextResponse.json({ success: false, message: "No files found" }, { status: 404 });
+  } else {
+    if (fileData.password) {
+      return NextResponse.json({ success: true, files: fileData.files, password: fileData.password });
+    } else {
+      return NextResponse.json({ success: true, files: fileData.files, password: null });
+    }
   }
-
-  return NextResponse.json({ success: true, files: fileData.files });
+  
 };
