@@ -18,6 +18,13 @@ export default function DownloadFile({ params }) {
     const [files, setFiles] = useState([]);
     const router = useRouter();
     const [loadingStates, setLoadingStates] = useState({});
+    
+    const [confirmPassword, setConfirmPassword] = useState(false);
+    const [password, setPassword] = useState("");
+    const [userEntered, setUserEntered] = useState("");
+    const [error_forWrongPassword, seterror_forWrongPassword] = useState(false);
+
+    
     useEffect(() => {
         async function fetchParams() {
             const dt = await params;
@@ -31,6 +38,41 @@ export default function DownloadFile({ params }) {
             handleGetFiles();
         }
     }, [customUrl]);
+
+    const handlePasswordPresent = () => {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="bg-gradient-to-r from-blue-900 via-black to-blue-900 border-2 border-green-500 rounded-lg p-6 w-80 shadow-2xl hover:scale-110 hover:shadow-2xl hover:shadow-green-500 transition-all duration-300">
+                    <h2 className="text-white text-2xl mb-4 text-center">Enter Password</h2>
+                    <input
+                        type="password"
+                        value={userEntered}
+                        onChange={(e) => {
+                            setUserEntered(e.target.value);
+                            seterror_forWrongPassword(false);
+                        }}
+                        placeholder="Enter the password"
+                        className={`w-full p-3 rounded-lg ${error_forWrongPassword? "bg-red-300" : "bg-white"} text-gray-700 placeholder-gray-400 mb-4 border-2 border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500`}
+                    />
+                    {error_forWrongPassword && <p className="text-sm text-center font-bold text-red-400 mt-1 mb-2">
+                        Wrong Password!</p>}
+
+                    <button onClick={() =>{
+                        if (password == userEntered){
+                            setFound(true);
+                            setConfirmPassword(false);
+                        } else {
+                            seterror_forWrongPassword(true);
+                        }
+                    }} className="w-full py-3 hover:cursor-pointer rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition duration-200">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        );
+    };
+
+    
 
     const reassembleFileFromChunks = async (chunkUrls) => {
         const chunkBuffers = [];
@@ -195,9 +237,17 @@ export default function DownloadFile({ params }) {
             
             if (data.success) {
                 
-                setFound(true);
-                setLoading(false);
                 setFiles(data.files);
+                if (!data.password) {
+                    setFound(true);
+                    setLoading(false); 
+                } else {
+                    setPassword(data.password);
+                    setLoading(false);
+                    setConfirmPassword(true);
+
+                }
+            
             } else {
                 setLoading(false);
                 setFound(false);
@@ -224,6 +274,8 @@ export default function DownloadFile({ params }) {
                         <ClipLoader loading={true} size={105} margin={15} speedMultiplier={1} color="#FFA500" cssOverride={override} />
                         <h1 className="text-3xl font-bold text-white">Getting Your Files</h1>
                     </div>
+                ) : confirmPassword ? (
+                    handlePasswordPresent()
                 ) : found ? (
                     handleFound(files)
                 ) : (
