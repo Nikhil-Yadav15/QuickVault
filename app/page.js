@@ -384,7 +384,7 @@ export default function Home() {
                   flexDirection: "column",
                 }}
               >
-                <h2 className={`text-4xl text-center font-bold ${atleastAddfile ? "bg-gradient-to-r from-red-700 to-red-800" : "bg-gradient-to-l from-green-400 via-green-500 to-emerald-300"} bg-clip-text text-transparent pb-8`}>
+                <h2 className={`text-3xl text-center font-bold ${atleastAddfile ? "bg-gradient-to-r from-red-700 to-red-800" : "bg-gradient-to-l from-green-400 via-green-500 to-emerald-300"} bg-clip-text text-transparent pb-4`}>
                   {atleastAddfile ? "Add a File First!" : "Add your files here"}
                 </h2>
 
@@ -422,7 +422,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="w-full p-6 pt-10">
+                <div className="w-full p-6 pt-4">
                   <div className="space-y-1">
                     <label
                       htmlFor="url-input"
@@ -473,7 +473,7 @@ export default function Home() {
 
 
                     <button
-                      className={`mt-6  w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-cyan-600 text-white font-semibold rounded-lg shadow-md ${uploadBtnDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02] active:scale-95  hover:cursor-pointer hover:from-purple-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'} transition-all duration-200 flex items-center justify-center gap-2 `}
+                      className={`mt-3  w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-cyan-600 text-white font-semibold rounded-lg shadow-md ${uploadBtnDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02] active:scale-95  hover:cursor-pointer hover:from-purple-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'} transition-all duration-200 flex items-center justify-center gap-2 `}
                       onClick={handleUploadBtn}
                       disabled={uploadBtnDisabled}
                     >
