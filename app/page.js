@@ -51,10 +51,10 @@ export default function Home() {
           method: 'POST',
         });
         if (!response.ok) {
-          console.error('Failed to log visit');
+          console.error('Failed to log');
         }
       } catch (error) {
-        console.error('Error logging visit:', error);
+        console.error('Error logging:', error);
       }
     };
     logVisit();
