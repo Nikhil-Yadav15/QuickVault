@@ -111,7 +111,7 @@ export default function Home() {
   const shPercentage = () => {
     return (
       <div className='w-full h-full flex flex-col items-center justify-center'>
-        <CircularProgress fileCount={selectedFiles.length} percentage={percentage <= 100 ? percentage : 100} totalSize={totalSize} uploadedSize={uploadedSize} onClick={() => { setPercentage(0); setPasswordParent(""); setUploadedSize(0); setUploading(false); setIsFlipped(false); setSelectedFiles([]); setTotalSize(0); setCustomEmail(''); router.push("/"); }} />
+        <CircularProgress fileCount={selectedFiles.length} percentage={percentage <= 100 ? percentage : 100} totalSize={totalSize} uploadedSize={uploadedSize} onClick={() => { setPasswordParent(''); setPercentage(0); setUploadedSize(0); setUploading(false); setIsFlipped(false); setSelectedFiles([]); setTotalSize(0); setCustomEmail(''); router.push("/"); }} />
       </div>)
   }
 
