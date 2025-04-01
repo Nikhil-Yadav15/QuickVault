@@ -19,6 +19,7 @@ import SetPasswordPopup from './componets/SETpasswordPopup';
 export default function Home() {
 
   const [password, setPasswordParent] = useState("");
+  const [userPasswordPopup, setuserPasswordPopup] = useState(false);
   
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -463,7 +464,7 @@ export default function Home() {
                   {changeURLbg && <p className="text-sm font-bold text-red-400 mt-2">
                     Oops! That URL is taken. Try another unique one!</p>}
                    
-                   {!changeURLbg && <SetPasswordPopup setPasswordParent={setPasswordParent}/>}
+                   {!changeURLbg && <SetPasswordPopup setPasswordParent={setPasswordParent} setuserPasswordPopup={setuserPasswordPopup}/>}
                    
                   {SpinnerLoading ? (
                     <>
