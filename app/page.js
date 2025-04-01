@@ -12,7 +12,7 @@ import pako from 'pako';
 import CircularProgress from './componets/circluarProgressBar';
 import { useRouter } from "next/navigation";
 import QRCodePopup from './componets/popup';
-import "reactjs-popup/dist/index.css";
+import "./forPopup.css";
 import SetPasswordPopup from './componets/SETpasswordPopup';
 
 
