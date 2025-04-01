@@ -269,6 +269,7 @@ export default function Home() {
 
   const handleUploadBtn = async () => {
     setSpinnerLoading(true);
+    setuserPasswordPopup(false);
     const dt = { "CustomEmail": customEmail }
     setUploadedSize(0);
     setLink(process.env.NEXT_PUBLIC_FOR_LINK + customEmail);
@@ -330,6 +331,7 @@ export default function Home() {
       }
       catch (error) {
         setUploading(false);
+        setIsFlipped(false);
       }
     } else {
       setAtleastAddfile(true);
