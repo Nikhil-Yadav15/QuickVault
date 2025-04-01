@@ -464,7 +464,7 @@ export default function Home() {
                   {changeURLbg && <p className="text-sm font-bold text-red-400 mt-2">
                     Oops! That URL is taken. Try another unique one!</p>}
                    
-                   {!changeURLbg && <SetPasswordPopup setPasswordParent={setPasswordParent} setuserPasswordPopup={setuserPasswordPopup}/>}
+                   {!changeURLbg && <SetPasswordPopup userPasswordPopup={userPasswordPopup} setPasswordParent={setPasswordParent} setuserPasswordPopup={setuserPasswordPopup}/>}
                    
                   {SpinnerLoading ? (
                     <>
