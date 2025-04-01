@@ -37,6 +37,7 @@ const SetPasswordPopup = ({ setPasswordParent }) => {
                 position="center center"
                 modal
                 nested
+                closeOnDocumentClick={false}
             >
                 {(close) => (
                     <div
