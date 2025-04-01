@@ -15,7 +15,12 @@ const SetPasswordPopup = ({ setPasswordParent, setuserPasswordPopup, userPasswor
 
     const handleCheckboxChange = (e) => {
         setIsChecked(true);
+        setuserPasswordPopup(true);
         setIsPopupOpen(true);
+        if (!userPasswordPopup){
+            setPasswordParent("");
+            setPassword("");
+        }
     };
 
     const handleSubmit = () => {
@@ -24,8 +29,10 @@ const SetPasswordPopup = ({ setPasswordParent, setuserPasswordPopup, userPasswor
         setIsPopupOpen(false);
         if (password !== "") {
             setIsChecked(true);
+            setuserPasswordPopup(true);
           } else {
             setIsChecked(false);
+            setuserPasswordPopup(false);
           }
     };
 
@@ -87,6 +94,7 @@ const SetPasswordPopup = ({ setPasswordParent, setuserPasswordPopup, userPasswor
                                     setPasswordParent("");
                                     setIsPopupOpen(false);
                                     setIsChecked(false);
+                                    setuserPasswordPopup(false);
                                 }}
                                 className="px-6 py-2 hover:cursor-pointer bg-gradient-to-r from-red-400 to-orange-900 text-white rounded-lg font-medium"
                             >
@@ -106,7 +114,7 @@ const SetPasswordPopup = ({ setPasswordParent, setuserPasswordPopup, userPasswor
             <label className="flex items-center gap-2 cursor-pointer">
                 <input
                     type="checkbox"
-                    checked={isChecked}
+                    checked={isChecked && userPasswordPopup}
                     onChange={handleCheckboxChange}
                     className="h-5 w-5 hover:cursor-pointer rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                 />
