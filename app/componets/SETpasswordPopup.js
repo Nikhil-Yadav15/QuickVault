@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+import "@/app/forPopup.css";
 import { LockKeyhole, Eye, EyeOff } from "lucide-react";
 
 const SetPasswordPopup = ({ setPasswordParent, setuserPasswordPopup, userPasswordPopup}) => {
