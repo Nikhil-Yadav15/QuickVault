@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+import "@/app/forPopup.css";
 import { QrCode } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
