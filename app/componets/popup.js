@@ -16,6 +16,7 @@ const QRCodePopup = ({ message }) => {
       position="right center"
       modal
       nested
+      closeOnDocumentClick={false}
   >
       {(close) => (
           <div
