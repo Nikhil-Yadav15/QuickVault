@@ -4,7 +4,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { LockKeyhole, Eye, EyeOff } from "lucide-react";
 
-const SetPasswordPopup = ({ setPasswordParent }) => {
+const SetPasswordPopup = ({ setPasswordParent, setuserPasswordPopup}) => {
     const [isChecked, setIsChecked] = useState(false);
     const [password, setPassword] = useState("");
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
