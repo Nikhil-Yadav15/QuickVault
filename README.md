@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# QuickVault 🚀
 
-## Getting Started
+Effortless File Transfers, Simplified. QuickVault is a modern file-sharing platform that allows users to upload files and generate custom shareable links instantly—no sign-ups or logins required.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features ✨
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Drag & Drop Interface**: Intuitive file uploading experience
+- **Instant Shareable Links**: Get custom links immediately after upload
+- **No Authentication Required**: Completely anonymous usage
+- **Generous 1GB File Limit**: Transfer large files with ease
+- **Secure Storage**: Files stored securely in Cloudinary
+- **Auto-Cleanup**: Files older than 10 days are automatically deleted
+- **Responsive Design**: Works perfectly on all devices
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Tech Stack 💻
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Frontend & Backend**: Next.js (App Router)
+- **Database**: MongoDB (File metadata storage)
+- **File Storage**: Cloudinary
+- **CI/CD**: GitHub Actions
+- **Hosting**: Vercel
 
-## Learn More
+## How It Works 🔧
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. User uploads file via drag-and-drop or file selection
+2. File is uploaded to Cloudinary storage
+3. File metadata (name, size, URL, expiry date) is stored in MongoDB
+4. User receives a unique shareable link
+5. GitHub Actions runs daily to purge files older than 10 days
