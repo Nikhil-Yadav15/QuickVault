@@ -39,6 +39,21 @@ export default function DownloadFile({ params }) {
         }
     }, [customUrl]);
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          handleVerify();
+        }
+      };
+
+    const handleVerify = () => {
+        if (password == userEntered){
+            setFound(true);
+            setConfirmPassword(false);
+        } else {
+            seterror_forWrongPassword(true);
+        }
+    }
+
     const handlePasswordPresent = () => {
         return (
             <div className="flex justify-center items-center h-screen">
@@ -47,6 +62,7 @@ export default function DownloadFile({ params }) {
                     <input
                         type="password"
                         value={userEntered}
+                        onKeyDown={handleKeyDown}
                         onChange={(e) => {
                             setUserEntered(e.target.value);
                             seterror_forWrongPassword(false);
@@ -57,14 +73,7 @@ export default function DownloadFile({ params }) {
                     {error_forWrongPassword && <p className="text-sm text-center font-bold text-red-400 mt-1 mb-2">
                         Wrong Password!</p>}
 
-                    <button onClick={() =>{
-                        if (password == userEntered){
-                            setFound(true);
-                            setConfirmPassword(false);
-                        } else {
-                            seterror_forWrongPassword(true);
-                        }
-                    }} className="w-full py-3 hover:cursor-pointer rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition duration-200">
+                    <button onClick={handleVerify} className="w-full py-3 hover:cursor-pointer rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition duration-200">
                         Verify
                     </button>
                 </div>
