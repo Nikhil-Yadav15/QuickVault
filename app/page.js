@@ -561,7 +561,7 @@ export default function Home() {
 
   const showFilesORPercentage = () => {
     return (
-      <div className="  showFilesclass flex justify-center items-center w-full md:w-[55%] md:justify-center order-1 md:order-1">
+      <div className="  showFilesclass flex justify-center items-center w-full md:w-[50%] md:justify-center order-1 md:order-1">
         {uploading ? shPercentage() : showfiles()}
 
       </div>
