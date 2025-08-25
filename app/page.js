@@ -367,48 +367,239 @@ export default function Home() {
 
   const DrogBoxAnimation = isDragActive ? "rotate 5s linear infinite" : "rotate 22s linear infinite";
 
+  // const mainContent = () => {
+  //   return (
+  //     <div className="mainstuff flex justify-center items-center max-[750px]:min-h-full  md:min-h-full md:w-[55%] order-2 md:order-2">
+  //       {/* Card Container */}
+  //       <div className={`flip-card ${isFlipped ? "flipped" : ""}`}>
+  //         <div className="flip-card-inner">
+  //           {/* Front Side */}
+  //           <div className="flip-card-front">
+  //             <div
+  //               className="mainCard flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[700px] rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
+  //               style={{
+  //                 background: `
+  //                 linear-gradient(to bottom left, #1e3a8a, #000000) padding-box,
+  //                 linear-gradient(var(--angle), #0f766e, #14b8a6, #0f766e) border-box
+  //               `,
+  //                 border: "4px solid transparent",
+  //                 animation: "rotate 8s linear infinite",
+  //                 flexDirection: "column",
+  //               }}
+  //             >
+  //               <h2 className={`text-3xl text-center font-bold ${atleastAddfile ? "bg-gradient-to-r from-red-700 to-red-800" : "bg-gradient-to-l from-green-400 via-green-500 to-emerald-300"} bg-clip-text text-transparent pb-4`}>
+  //                 {atleastAddfile ? "Add a File First!" : "Add your files here"}
+  //               </h2>
+
+  //               <div
+  //                 {...getRootProps()}
+  //                 className="relative flex justify-center items-center p-8 w-full max-w-md rounded-xl overflow-hidden cursor-pointer"
+  //                 style={{
+  //                   background: `
+  //             linear-gradient(to bottom right, rgb(13, 148, 136), rgb(0, 0, 100)) padding-box,
+  //             repeating-linear-gradient(
+  //               var(--angle),
+  //               rgb(249, 115, 22),
+  //               rgb(249, 115, 22) 10px,
+  //               transparent 10px,
+  //               transparent 20px,
+  //               rgb(13, 148, 136) 20px,
+  //               rgb(13, 148, 136) 30px,
+  //               transparent 30px,
+  //               transparent 40px
+  //             ) border-box
+  //           `,
+  //                   border: "3px dashed transparent",
+  //                   animation: DrogBoxAnimation,
+  //                   boxShadow: "inset 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 -4px 12px rgba(0, 0, 0, 0.5)",
+  //                 }}
+  //               >
+  //                 <input {...getInputProps()} />
+  //                 <div className="text-center space-y-4">
+  //                   <p className={`text-gray-300 transition-colors ${isDragActive ? "text-white" : "text-white hover:scale-[120%] transition-all duration-500 ease-in-out"}`}>
+  //                     {isDragActive ? "✨ Drop to upload!" : "Click or drag files here"}
+  //                   </p>
+  //                   {errorMessage && (
+  //                     <p className="text-red-500 mt-2 font-bold">{errorMessage}</p>
+  //                   )}
+  //                 </div>
+  //               </div>
+
+  //               <div className="w-full p-6 pt-4">
+  //                 <div className="space-y-1">
+  //                   <label
+  //                     htmlFor="url-input"
+  //                     className="block text-center text-2xl font-medium bg-gradient-to-l from-green-400 via-green-500 to-emerald-500 bg-clip-text text-transparent mb-2 transition-colors duration-200"
+  //                   >
+  //                     Enter your Custom URL
+  //                     <span className="text-blue-500 ml-1">*</span>
+  //                   </label>
+  //                   <div className="relative group">
+  //                     <input
+  //                       id="url-input"
+  //                       type="url"
+  //                       onKeyDown={handleKeyDown}
+  //                       value={customEmail}
+  //                       onChange={(e) => {
+  //                         setCustomEmail(e.target.value.replace(/[^\w\s-]/g, '-').replace(/\s+/g, '-').replace(/-{2,}/g, '-').replace(/^-{2,}|-{2,}$/g, ''));
+  //                         if (e.target.value) {
+  //                           setUploadBtnDisabled(false);
+  //                         }
+  //                         else {
+  //                           setUploadBtnDisabled(true);
+  //                         }
+  //                         setChangeURLbg(false);
+  //                       }
+  //                       }
+  //                       placeholder={process.env.NEXT_PUBLIC_FOR_PLACEHOLDER}
+  //                       className={`w-full  px-5 py-3  bg-gray-50 rounded-lg border-2  
+  //                           ${changeURLbg ? "focus:text-red-600 focus:border-red-600 focus:bg-white hover:border-red-800 border-red-600"
+  //                           :
+  //                           "focus:border-blue-500 focus:ring-2 focus:ring-green-200 focus:bg-white hover:border-blue-800"} transition-all duration-500 peer placeholder-gray-400 text-gray-700 border-gray-200`}
+  //                       pattern="https://.*"
+  //                       required
+  //                     />
+  //                     <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-blue-100 pointer-events-none transition-all duration-300" />
+  //                   </div>
+  //                 </div>
+  //                 {/* //!adding spinner with button */}
+  //                 {changeURLbg && <p className="text-sm font-bold text-red-400 mt-2">
+  //                   Oops! That URL is taken. Try another unique one!</p>}
+                   
+  //                  {!changeURLbg && <SetPasswordPopup userPasswordPopup={userPasswordPopup} setPasswordParent={setPasswordParent} setuserPasswordPopup={setuserPasswordPopup}/>}
+                   
+  //                 {SpinnerLoading ? (
+  //                   <>
+  //                     <ClipLoader loading={true} size={80} margin={15} speedMultiplier={1} color="#FFA500" cssOverride={SpinnerOverride} />
+  //                   </>
+  //                 ) : (
+
+
+  //                   <button
+  //                     className={`mt-3  w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-cyan-600 text-white font-semibold rounded-lg shadow-md ${uploadBtnDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02] active:scale-95  hover:cursor-pointer hover:from-purple-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'} transition-all duration-200 flex items-center justify-center gap-2 `}
+  //                     onClick={handleUploadBtn}
+  //                     disabled={uploadBtnDisabled}
+  //                   >
+  //                     <svg
+  //                       className="w-5 h-5 text-white animate-pulse-once"
+  //                       fill="none"
+  //                       stroke="currentColor"
+  //                       viewBox="0 0 24 24"
+  //                     >
+  //                       <path
+  //                         strokeLinecap="round"
+  //                         strokeLinejoin="round"
+  //                         strokeWidth={2}
+  //                         d="M13 10V3L4 14h7v7l9-11h-7z"
+  //                       />
+  //                     </svg>
+  //                     Upload Files
+  //                   </button>
+  //                 )}
+
+  //               </div>
+  //             </div>
+  //           </div>
+
+  //           {/* //!Back Side */}
+  //           <div className="flip-card-back">
+  //             <div
+  //               className="mainCard relative flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[800px] min-h-fit rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
+  //               style={{
+  //                 background: `
+  //                 linear-gradient(to bottom right, #000000, #1e3a8a) padding-box,
+  //                 linear-gradient(var(--angle), #14b8a6, #0f766e, #14b8a6) border-box
+  //               `,
+  //                 border: "4px solid transparent",
+  //                 animation: "rotate 8s linear infinite",
+  //               }}
+  //             >
+  //               <h2 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent pb-8 text-center">
+  //                 Your files are ready to share!
+  //               </h2>
+  //               <h2 className="text-2xl font-bold text-amber-50">Copy the link to share your files</h2>
+  //               <div className="flex items-center space-x-2 w-full my-3">
+  //                 {/* Input Field */}
+  //                 <input
+  //                   type="text"
+  //                   value={link}
+  //                   readOnly
+  //                   className="w-full p-2 font-semibold  rounded-lg border-2 border-gray-600 focus:border-blue-400 focus:bg-opacity-20 hover:border-blue-300 transition-all duration-500 text-purple-300"
+  //                 />
+
+  //                 {/* Copy Button */}
+  //                 <button
+  //                   onClick={handleCopy}
+  //                   className={`p-2 flex items-center space-x-2 text-white hover:cursor-pointer rounded-lg transition-all duration-300 ${!changeBGCopy
+  //                     ? "bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-amber-400"
+  //                     : "bg-cyan-500"
+  //                     }`}
+  //                 >
+  //                   {copied ? <Check className="w-6 h-6 text-black" /> : <Copy className="w-6 h-6" />}
+  //                 </button>
+  //               </div>
+  //               <QRCodePopup message={link} />
+  //               <p className="text-sm text-red-400 mt-2">
+  //                 ⚠️ Link will expire after <span className="font-bold">10 days!</span>
+  //               </p>
+  //             </div> 
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // }
+
   const mainContent = () => {
-    return (
-      <div className="mainstuff flex justify-center items-center max-[750px]:min-h-full  md:min-h-full md:w-[55%] order-2 md:order-2">
-        {/* Card Container */}
-        <div className={`flip-card ${isFlipped ? "flipped" : ""}`}>
-          <div className="flip-card-inner">
-            {/* Front Side */}
-            <div className="flip-card-front">
-              <div
-                className="mainCard flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[700px] rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
-                style={{
-                  background: `
+  return (
+    <div className="mainstuff flex justify-center items-center w-full md:w-[55%] order-2 md:order-2 px-4">
+      {/* Card Container with fixed dimensions */}
+      <div className={`flip-card ${isFlipped ? "flipped" : ""} w-full max-w-[700px]`}>
+        <div className="flip-card-inner">
+          {/* Front Side */}
+          <div className="flip-card-front">
+            <div
+              className="mainCard flex flex-col p-6 w-full rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
+              style={{
+                background: `
                   linear-gradient(to bottom left, #1e3a8a, #000000) padding-box,
                   linear-gradient(var(--angle), #0f766e, #14b8a6, #0f766e) border-box
                 `,
-                  border: "4px solid transparent",
-                  animation: "rotate 8s linear infinite",
-                  flexDirection: "column",
-                }}
-              >
+                border: "4px solid transparent",
+                animation: "rotate 8s linear infinite",
+                minHeight: "450px", // Fixed minimum height
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between", // Distribute content evenly
+              }}
+            >
+              {/* Title Section */}
+              <div className="flex-shrink-0">
                 <h2 className={`text-3xl text-center font-bold ${atleastAddfile ? "bg-gradient-to-r from-red-700 to-red-800" : "bg-gradient-to-l from-green-400 via-green-500 to-emerald-300"} bg-clip-text text-transparent pb-4`}>
                   {atleastAddfile ? "Add a File First!" : "Add your files here"}
                 </h2>
+              </div>
 
+              {/* Drop Zone Section */}
+              <div className="flex-grow flex items-center justify-center">
                 <div
                   {...getRootProps()}
                   className="relative flex justify-center items-center p-8 w-full max-w-md rounded-xl overflow-hidden cursor-pointer"
                   style={{
                     background: `
-              linear-gradient(to bottom right, rgb(13, 148, 136), rgb(0, 0, 100)) padding-box,
-              repeating-linear-gradient(
-                var(--angle),
-                rgb(249, 115, 22),
-                rgb(249, 115, 22) 10px,
-                transparent 10px,
-                transparent 20px,
-                rgb(13, 148, 136) 20px,
-                rgb(13, 148, 136) 30px,
-                transparent 30px,
-                transparent 40px
-              ) border-box
-            `,
+                      linear-gradient(to bottom right, rgb(13, 148, 136), rgb(0, 0, 100)) padding-box,
+                      repeating-linear-gradient(
+                        var(--angle),
+                        rgb(249, 115, 22),
+                        rgb(249, 115, 22) 10px,
+                        transparent 10px,
+                        transparent 20px,
+                        rgb(13, 148, 136) 20px,
+                        rgb(13, 148, 136) 30px,
+                        transparent 30px,
+                        transparent 40px
+                      ) border-box
+                    `,
                     border: "3px dashed transparent",
                     animation: DrogBoxAnimation,
                     boxShadow: "inset 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 -4px 12px rgba(0, 0, 0, 0.5)",
@@ -424,131 +615,142 @@ export default function Home() {
                     )}
                   </div>
                 </div>
+              </div>
 
-                <div className="w-full p-6 pt-4">
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="url-input"
-                      className="block text-center text-2xl font-medium bg-gradient-to-l from-green-400 via-green-500 to-emerald-500 bg-clip-text text-transparent mb-2 transition-colors duration-200"
-                    >
-                      Enter your Custom URL
-                      <span className="text-blue-500 ml-1">*</span>
-                    </label>
-                    <div className="relative group">
-                      <input
-                        id="url-input"
-                        type="url"
-                        onKeyDown={handleKeyDown}
-                        value={customEmail}
-                        onChange={(e) => {
-                          setCustomEmail(e.target.value.replace(/[^\w\s-]/g, '-').replace(/\s+/g, '-').replace(/-{2,}/g, '-').replace(/^-{2,}|-{2,}$/g, ''));
-                          if (e.target.value) {
-                            setUploadBtnDisabled(false);
-                          }
-                          else {
-                            setUploadBtnDisabled(true);
-                          }
-                          setChangeURLbg(false);
+              {/* Input and Button Section */}
+              <div className="w-full flex-shrink-0">
+                <div className="space-y-1">
+                  <label
+                    htmlFor="url-input"
+                    className="block text-center text-2xl font-medium bg-gradient-to-l from-green-400 via-green-500 to-emerald-500 bg-clip-text text-transparent mb-2 transition-colors duration-200"
+                  >
+                    Enter your Custom URL
+                    <span className="text-blue-500 ml-1">*</span>
+                  </label>
+                  <div className="relative group">
+                    <input
+                      id="url-input"
+                      type="url"
+                      onKeyDown={handleKeyDown}
+                      value={customEmail}
+                      onChange={(e) => {
+                        setCustomEmail(e.target.value.replace(/[^\w\s-]/g, '-').replace(/\s+/g, '-').replace(/-{2,}/g, '-').replace(/^-{2,}|-{2,}$/g, ''));
+                        if (e.target.value) {
+                          setUploadBtnDisabled(false);
+                        } else {
+                          setUploadBtnDisabled(true);
                         }
-                        }
-                        placeholder={process.env.NEXT_PUBLIC_FOR_PLACEHOLDER}
-                        className={`w-full  px-5 py-3  bg-gray-50 rounded-lg border-2  
-                            ${changeURLbg ? "focus:text-red-600 focus:border-red-600 focus:bg-white hover:border-red-800 border-red-600"
-                            :
-                            "focus:border-blue-500 focus:ring-2 focus:ring-green-200 focus:bg-white hover:border-blue-800"} transition-all duration-500 peer placeholder-gray-400 text-gray-700 border-gray-200`}
-                        pattern="https://.*"
-                        required
-                      />
-                      <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-blue-100 pointer-events-none transition-all duration-300" />
-                    </div>
+                        setChangeURLbg(false);
+                      }}
+                      placeholder={process.env.NEXT_PUBLIC_FOR_PLACEHOLDER}
+                      className={`w-full px-5 py-3 bg-gray-50 rounded-lg border-2 
+                        ${changeURLbg ? "focus:text-red-600 focus:border-red-600 focus:bg-white hover:border-red-800 border-red-600"
+                        : "focus:border-blue-500 focus:ring-2 focus:ring-green-200 focus:bg-white hover:border-blue-800"} 
+                        transition-all duration-500 peer placeholder-gray-400 text-gray-700 border-gray-200`}
+                      pattern="https://.*"
+                      required
+                    />
+                    <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-blue-100 pointer-events-none transition-all duration-300" />
                   </div>
-                  {/* //!adding spinner with button */}
-                  {changeURLbg && <p className="text-sm font-bold text-red-400 mt-2">
-                    Oops! That URL is taken. Try another unique one!</p>}
-                   
-                   {!changeURLbg && <SetPasswordPopup userPasswordPopup={userPasswordPopup} setPasswordParent={setPasswordParent} setuserPasswordPopup={setuserPasswordPopup}/>}
-                   
-                  {SpinnerLoading ? (
-                    <>
-                      <ClipLoader loading={true} size={80} margin={15} speedMultiplier={1} color="#FFA500" cssOverride={SpinnerOverride} />
-                    </>
-                  ) : (
-
-
-                    <button
-                      className={`mt-3  w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-cyan-600 text-white font-semibold rounded-lg shadow-md ${uploadBtnDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02] active:scale-95  hover:cursor-pointer hover:from-purple-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'} transition-all duration-200 flex items-center justify-center gap-2 `}
-                      onClick={handleUploadBtn}
-                      disabled={uploadBtnDisabled}
-                    >
-                      <svg
-                        className="w-5 h-5 text-white animate-pulse-once"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
-                      Upload Files
-                    </button>
-                  )}
-
                 </div>
+                
+                {changeURLbg && (
+                  <p className="text-sm font-bold text-red-400 mt-2">
+                    Oops! That URL is taken. Try another unique one!
+                  </p>
+                )}
+                
+                {!changeURLbg && (
+                  <SetPasswordPopup userPasswordPopup={userPasswordPopup} setPasswordParent={setPasswordParent} setuserPasswordPopup={setuserPasswordPopup}/>
+                )}
+                
+                {SpinnerLoading ? (
+                  <div className="flex justify-center mt-3">
+                    <ClipLoader loading={true} size={80} margin={15} speedMultiplier={1} color="#FFA500" cssOverride={SpinnerOverride} />
+                  </div>
+                ) : (
+                  <button
+                    className={`mt-3 w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-cyan-600 text-white font-semibold rounded-lg shadow-md ${uploadBtnDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02] active:scale-95 hover:cursor-pointer hover:from-purple-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'} transition-all duration-200 flex items-center justify-center gap-2`}
+                    onClick={handleUploadBtn}
+                    disabled={uploadBtnDisabled}
+                  >
+                    <svg
+                      className="w-5 h-5 text-white animate-pulse-once"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                    Upload Files
+                  </button>
+                )}
               </div>
             </div>
+          </div>
 
-            {/* //!Back Side */}
-            <div className="flip-card-back">
-              <div
-                className="mainCard relative flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[800px] min-h-fit rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
-                style={{
-                  background: `
+          {/* Back Side */}
+          <div className="flip-card-back">
+            <div
+              className="mainCard relative flex flex-col p-6 w-full rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
+              style={{
+                background: `
                   linear-gradient(to bottom right, #000000, #1e3a8a) padding-box,
                   linear-gradient(var(--angle), #14b8a6, #0f766e, #14b8a6) border-box
                 `,
-                  border: "4px solid transparent",
-                  animation: "rotate 8s linear infinite",
-                }}
-              >
-                <h2 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent pb-8 text-center">
-                  Your files are ready to share!
-                </h2>
-                <h2 className="text-2xl font-bold text-amber-50">Copy the link to share your files</h2>
-                <div className="flex items-center space-x-2 w-full my-3">
-                  {/* Input Field */}
-                  <input
-                    type="text"
-                    value={link}
-                    readOnly
-                    className="w-full p-2 font-semibold  rounded-lg border-2 border-gray-600 focus:border-blue-400 focus:bg-opacity-20 hover:border-blue-300 transition-all duration-500 text-purple-300"
-                  />
-
-                  {/* Copy Button */}
-                  <button
-                    onClick={handleCopy}
-                    className={`p-2 flex items-center space-x-2 text-white hover:cursor-pointer rounded-lg transition-all duration-300 ${!changeBGCopy
-                      ? "bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-amber-400"
-                      : "bg-cyan-500"
-                      }`}
-                  >
-                    {copied ? <Check className="w-6 h-6 text-black" /> : <Copy className="w-6 h-6" />}
-                  </button>
-                </div>
-                <QRCodePopup message={link} />
-                <p className="text-sm text-red-400 mt-2">
-                  ⚠️ Link will expire after <span className="font-bold">10 days!</span>
-                </p>
-              </div> 
+                border: "4px solid transparent",
+                animation: "rotate 8s linear infinite",
+                minHeight: "450px", // Same fixed height as front
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center", // Center content vertically
+                gap: "1.5rem", // Consistent spacing
+              }}
+            >
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent text-center">
+                Your files are ready to share!
+              </h2>
+              
+              <h3 className="text-2xl font-bold text-amber-50 text-center">
+                Copy the link to share your files
+              </h3>
+              
+              <div className="flex items-center space-x-2 w-full">
+                <input
+                  type="text"
+                  value={link}
+                  readOnly
+                  className="w-full p-2 font-semibold rounded-lg border-2 border-gray-600 focus:border-blue-400 focus:bg-opacity-20 hover:border-blue-300 transition-all duration-500 text-purple-300"
+                />
+                <button
+                  onClick={handleCopy}
+                  className={`p-2 flex items-center space-x-2 text-white hover:cursor-pointer rounded-lg transition-all duration-300 ${!changeBGCopy
+                    ? "bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-yellow-500 hover:to-amber-400"
+                    : "bg-cyan-500"
+                  }`}
+                >
+                  {copied ? <Check className="w-6 h-6 text-black" /> : <Copy className="w-6 h-6" />}
+                </button>
+              </div>
+              
+              <QRCodePopup message={link} />
+              
+              <p className="text-sm text-red-400 text-center">
+                ⚠️ Link will expire after <span className="font-bold">10 days!</span>
+              </p>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  );
+};
+
 
   const showingBenefit = () => {
     return (
