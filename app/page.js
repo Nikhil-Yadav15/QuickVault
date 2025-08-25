@@ -550,16 +550,16 @@ export default function Home() {
   //   )
   // }
 
-  const mainContent = () => {
+ const mainContent = () => {
   return (
-    <div className="mainstuff flex justify-center items-center w-full md:w-[55%] order-2 md:order-2 px-4">
-      {/* Card Container with fixed dimensions */}
-      <div className={`flip-card ${isFlipped ? "flipped" : ""} w-full max-w-[700px]`}>
+    <div className="mainstuff flex justify-center items-center max-[750px]:min-h-full md:min-h-full md:w-[55%] order-2 md:order-2">
+      {/* Card Container */}
+      <div className={`flip-card ${isFlipped ? "flipped" : ""}`}>
         <div className="flip-card-inner">
-          {/* Front Side */}
+          {/* Front Side - Upload Form (Should be visible initially) */}
           <div className="flip-card-front">
             <div
-              className="mainCard flex flex-col p-6 w-full rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
+              className="mainCard flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[700px] rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
               style={{
                 background: `
                   linear-gradient(to bottom left, #1e3a8a, #000000) padding-box,
@@ -567,58 +567,48 @@ export default function Home() {
                 `,
                 border: "4px solid transparent",
                 animation: "rotate 8s linear infinite",
-                minHeight: "450px", // Fixed minimum height
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between", // Distribute content evenly
+                minHeight: "450px",
               }}
             >
-              {/* Title Section */}
-              <div className="flex-shrink-0">
-                <h2 className={`text-3xl text-center font-bold ${atleastAddfile ? "bg-gradient-to-r from-red-700 to-red-800" : "bg-gradient-to-l from-green-400 via-green-500 to-emerald-300"} bg-clip-text text-transparent pb-4`}>
-                  {atleastAddfile ? "Add a File First!" : "Add your files here"}
-                </h2>
-              </div>
+              <h2 className={`text-3xl text-center font-bold ${atleastAddfile ? "bg-gradient-to-r from-red-700 to-red-800" : "bg-gradient-to-l from-green-400 via-green-500 to-emerald-300"} bg-clip-text text-transparent pb-4`}>
+                {atleastAddfile ? "Add a File First!" : "Add your files here"}
+              </h2>
 
-              {/* Drop Zone Section */}
-              <div className="flex-grow flex items-center justify-center">
-                <div
-                  {...getRootProps()}
-                  className="relative flex justify-center items-center p-8 w-full max-w-md rounded-xl overflow-hidden cursor-pointer"
-                  style={{
-                    background: `
-                      linear-gradient(to bottom right, rgb(13, 148, 136), rgb(0, 0, 100)) padding-box,
-                      repeating-linear-gradient(
-                        var(--angle),
-                        rgb(249, 115, 22),
-                        rgb(249, 115, 22) 10px,
-                        transparent 10px,
-                        transparent 20px,
-                        rgb(13, 148, 136) 20px,
-                        rgb(13, 148, 136) 30px,
-                        transparent 30px,
-                        transparent 40px
-                      ) border-box
-                    `,
-                    border: "3px dashed transparent",
-                    animation: DrogBoxAnimation,
-                    boxShadow: "inset 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 -4px 12px rgba(0, 0, 0, 0.5)",
-                  }}
-                >
-                  <input {...getInputProps()} />
-                  <div className="text-center space-y-4">
-                    <p className={`text-gray-300 transition-colors ${isDragActive ? "text-white" : "text-white hover:scale-[120%] transition-all duration-500 ease-in-out"}`}>
-                      {isDragActive ? "✨ Drop to upload!" : "Click or drag files here"}
-                    </p>
-                    {errorMessage && (
-                      <p className="text-red-500 mt-2 font-bold">{errorMessage}</p>
-                    )}
-                  </div>
+              <div
+                {...getRootProps()}
+                className="relative flex justify-center items-center p-8 w-full max-w-md rounded-xl overflow-hidden cursor-pointer"
+                style={{
+                  background: `
+                    linear-gradient(to bottom right, rgb(13, 148, 136), rgb(0, 0, 100)) padding-box,
+                    repeating-linear-gradient(
+                      var(--angle),
+                      rgb(249, 115, 22),
+                      rgb(249, 115, 22) 10px,
+                      transparent 10px,
+                      transparent 20px,
+                      rgb(13, 148, 136) 20px,
+                      rgb(13, 148, 136) 30px,
+                      transparent 30px,
+                      transparent 40px
+                    ) border-box
+                  `,
+                  border: "3px dashed transparent",
+                  animation: DrogBoxAnimation,
+                  boxShadow: "inset 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 -4px 12px rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                <input {...getInputProps()} />
+                <div className="text-center space-y-4">
+                  <p className={`text-gray-300 transition-colors ${isDragActive ? "text-white" : "text-white hover:scale-[120%] transition-all duration-500 ease-in-out"}`}>
+                    {isDragActive ? "✨ Drop to upload!" : "Click or drag files here"}
+                  </p>
+                  {errorMessage && (
+                    <p className="text-red-500 mt-2 font-bold">{errorMessage}</p>
+                  )}
                 </div>
               </div>
 
-              {/* Input and Button Section */}
-              <div className="w-full flex-shrink-0">
+              <div className="w-full p-6 pt-4">
                 <div className="space-y-1">
                   <label
                     htmlFor="url-input"
@@ -694,10 +684,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Back Side */}
+          {/* Back Side - Success Message (Should be hidden initially) */}
           <div className="flip-card-back">
             <div
-              className="mainCard relative flex flex-col p-6 w-full rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
+              className="mainCard relative flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[800px] rounded-xl overflow-hidden items-center hover:scale-[102%] hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-500 ease-in-out"
               style={{
                 background: `
                   linear-gradient(to bottom right, #000000, #1e3a8a) padding-box,
@@ -705,20 +695,20 @@ export default function Home() {
                 `,
                 border: "4px solid transparent",
                 animation: "rotate 8s linear infinite",
-                minHeight: "450px", // Same fixed height as front
+                minHeight: "450px",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center", // Center content vertically
-                gap: "1.5rem", // Consistent spacing
+                justifyContent: "center",
+                gap: "1.5rem",
               }}
             >
               <h2 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent text-center">
                 Your files are ready to share!
               </h2>
               
-              <h3 className="text-2xl font-bold text-amber-50 text-center">
+              <h2 className="text-2xl font-bold text-amber-50 text-center">
                 Copy the link to share your files
-              </h3>
+              </h2>
               
               <div className="flex items-center space-x-2 w-full">
                 <input
