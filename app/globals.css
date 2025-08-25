@@ -46,11 +46,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Ensure consistent box model */
   box-sizing: border-box;
 }
 
-/* Back side rotation */
+/* Front side - visible by default */
+.flip-card-front {
+  transform: rotateY(0deg);
+}
+
+/* Back side - hidden initially */
 .flip-card-back {
   transform: rotateY(180deg);
 }
