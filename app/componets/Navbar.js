@@ -1,6 +1,7 @@
 import React from 'react';
 import NextLink from 'next/link';
 import Image from 'next/image';
+import ShinyText from '@/components/ui/shiny-text';
 
 const Navbar = () => {
   return (
@@ -15,9 +16,9 @@ const Navbar = () => {
               height={36}
               className="group-hover:scale-110 transition-transform duration-300"
             />
-            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent font-bold tracking-tight">
+            <ShinyText className="font-bold tracking-tight text-xl" speed={4}>
               QuickVault
-            </span>
+            </ShinyText>
           </div>
         </NextLink>
       </div>

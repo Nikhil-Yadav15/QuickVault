@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 export const ShinyText = ({
   children,
   className,
-  shimmerWidth = 100,
   speed = 3,
 }) => {
   return (
@@ -17,10 +16,11 @@ export const ShinyText = ({
       style={{
         backgroundImage: `linear-gradient(
           120deg,
-          rgba(255, 255, 255, 0.4) 0%,
-          rgba(255, 255, 255, 1) 33%,
-          rgba(255, 255, 255, 0.4) 66%,
-          rgba(16, 185, 129, 0.8) 100%
+          #10b981 0%,
+          #06b6d4 25%,
+          #34d399 50%,
+          #06b6d4 75%,
+          #10b981 100%
         )`,
         animationDuration: `${speed}s`,
       }}
