@@ -271,7 +271,7 @@ export default function DownloadFile({ params }) {
     };
 
     return (
-        <div className="relative min-h-screen flex flex-col">
+        <div className="relative min-h-[100dvh] flex flex-col">
             <BackgroundBeams className="fixed inset-0 z-0 pointer-events-none opacity-40" />
             <div className="relative z-10 flex-grow w-full flex items-center justify-center py-16">
                 {loading ? (

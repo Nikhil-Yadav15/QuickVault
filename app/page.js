@@ -17,6 +17,8 @@ import { Progress } from "@/components/ui/progress";
 import BackgroundBeams from "@/components/ui/background-beams";
 import TextGenerateEffect from "@/components/ui/text-generate-effect";
 import SplitText from "@/components/ui/split-text";
+import FloatingFiles from "@/components/ui/floating-files";
+import ConfettiBurst from "@/components/ui/confetti-burst";
 
 
 export default function Home() {
@@ -29,6 +31,7 @@ export default function Home() {
   const [totalSize, setTotalSize] = useState(0);
   const [customEmail, setCustomEmail] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
+  const [confettiKey, setConfettiKey] = useState(0);
   const [SpinnerLoading, setSpinnerLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [link, setLink] = useState('localhost:3000/yourCustomUrl');
@@ -123,7 +126,7 @@ export default function Home() {
               Files to Upload
             </h1>
             <div className="mb-4">
-              <div className="flex justify-between text-xs text-white/40 mb-1.5">
+              <div className="flex justify-between text-xs text-white/60 mb-1.5">
                 <span>{formatBytes(totalSize)}</span>
                 <span>{formatBytes(MAX_FILE_SIZE)}</span>
               </div>
@@ -159,6 +162,11 @@ export default function Home() {
   const showBenefit = () => {
     return (
       <div className="flex flex-col text-center justify-center items-center p-3 md:pl-8 max-w-2xl">
+        {/* 3D Floating File Objects */}
+        <div className="hidden md:flex w-full justify-center mb-6">
+          <FloatingFiles className="w-[360px] h-[340px]" />
+        </div>
+
         <h2 className="text-2xl md:text-4xl font-bold mb-6">
           <SplitText
             text="Effortless File Transfers, Simplified."
@@ -168,12 +176,12 @@ export default function Home() {
         </h2>
         <TextGenerateEffect
           words="Welcome to the future of file sharing. Upload files seamlessly and generate custom links instantly — no sign-ups, no logins, just pure simplicity."
-          className="text-base md:text-lg text-white/50 leading-relaxed mb-5"
+          className="text-lg md:text-xl text-white/80 leading-relaxed mb-5"
         />
-        <p className="text-base md:text-lg text-white/40 leading-relaxed mb-5">
-          <span className="font-medium text-emerald-400/70">Upload. Share. Relax.</span> Your files are securely stored and easily accessible.
+        <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-5">
+          <span className="font-semibold text-emerald-400">Upload. Share. Relax.</span> Your files are securely stored and easily accessible.
         </p>
-        <p className="text-base md:text-lg text-white/30 leading-relaxed hidden md:block">
+        <p className="text-lg md:text-xl text-white/60 leading-relaxed hidden md:block">
           Drag and drop your files, or click to upload. Your custom link will be ready in seconds.
         </p>
       </div>
@@ -272,6 +280,7 @@ export default function Home() {
         const data = await res.json();
         if (data.success) {
           setIsFlipped(!isFlipped);
+          setConfettiKey((k) => k + 1);
           setSpinnerLoading(false);
           try {
             setUploading(true);
@@ -357,7 +366,7 @@ export default function Home() {
           <div className="flip-card-inner">
             {/* Front Side */}
             <div className="flip-card-front">
-              <div className="glass-card glass-card-hover flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[700px] overflow-hidden items-center">
+              <div className="animated-border flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[700px] overflow-hidden items-center">
                 <h2 className={`text-2xl text-center font-semibold ${atleastAddfile ? "text-red-400" : "bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"} pb-4`}>
                   {atleastAddfile ? "Add a File First!" : "Add your files here"}
                 </h2>
@@ -365,13 +374,13 @@ export default function Home() {
                 {/* Dropzone */}
                 <div
                   {...getRootProps()}
-                  className={`relative flex justify-center items-center p-10 w-full max-w-md rounded-xl overflow-hidden cursor-pointer border border-dashed transition-all duration-500 ${isDragActive ? "border-emerald-500/60 bg-emerald-500/5" : "border-white/15 hover:border-emerald-500/40"}`}
+                  className={`group relative flex justify-center items-center p-10 w-full max-w-md rounded-xl overflow-hidden cursor-pointer border border-dashed transition-all duration-500 ${isDragActive ? "border-emerald-500/60 bg-emerald-500/5" : "border-white/15 hover:border-emerald-500/40"}`}
                   style={{ background: isDragActive ? "rgba(16,185,129,0.03)" : "rgba(255,255,255,0.02)" }}
                 >
                   <input {...getInputProps()} />
                   <div className="text-center space-y-3">
-                    <CloudUpload className={`w-10 h-10 mx-auto ${isDragActive ? "text-emerald-400" : "text-white/30"} transition-colors`} />
-                    <p className={`text-sm ${isDragActive ? "text-emerald-400" : "text-white/50"} transition-colors`}>
+                    <CloudUpload className={`w-10 h-10 mx-auto transition-all duration-500 ${isDragActive ? "text-emerald-400 -translate-y-1 scale-110" : "text-white/60 group-hover:-translate-y-2 group-hover:scale-115 group-hover:text-emerald-400 group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.5)]"}`} />
+                    <p className={`text-sm transition-colors duration-300 ${isDragActive ? "text-emerald-400" : "text-white/70 group-hover:text-emerald-400/80"}`}>
                       {isDragActive ? "Drop to upload!" : "Click or drag files here"}
                     </p>
                     {errorMessage && (
@@ -442,7 +451,8 @@ export default function Home() {
 
             {/* Back Side */}
             <div className="flip-card-back">
-              <div className="glass-card flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[800px] min-h-fit overflow-hidden items-center">
+              <div className="animated-border relative flex flex-col p-6 w-[90%] sm:w-[65%] max-w-[800px] min-h-fit overflow-visible items-center">
+                <ConfettiBurst trigger={confettiKey} />
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent pb-6 text-center">
                   Your files are ready to share!
                 </h2>
@@ -468,7 +478,7 @@ export default function Home() {
 
                 <QRCodePopup message={link} />
 
-                <p className="text-sm text-white/30 mt-2">
+                <p className="text-sm text-white/50 mt-2">
                   ⚠️ Link expires after <span className="font-medium text-amber-400/70">10 days</span>
                 </p>
               </div>
@@ -497,7 +507,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative min-h-screen flex flex-col">
+    <div className="relative min-h-[100dvh] flex flex-col">
       <BackgroundBeams className="fixed inset-0 z-0 pointer-events-none opacity-40" />
       <div className="main relative z-10 flex-grow flex flex-col md:flex-row">
         {selectedFiles.length > 0 ? showFilesORPercentage() : showingBenefit()}

@@ -113,6 +113,67 @@
   50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.2); }
 }
 
+/* ===== Animated Gradient Border ===== */
+@keyframes border-rotate {
+  0%   { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.animated-border {
+  --border-angle: 0deg;
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  animation: border-rotate 6s linear infinite;
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 30%,
+    #10b981 42%,
+    #06b6d4 50%,
+    #8b5cf6 58%,
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: border-rotate 6s linear infinite;
+}
+
+.animated-border:hover::before {
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 20%,
+    #10b981 35%,
+    #06b6d4 50%,
+    #8b5cf6 65%,
+    transparent 80%
+  );
+}
+
 /* ===== Glassmorphism Utilities ===== */
 .glass {
   background: rgba(255, 255, 255, 0.03);
@@ -304,12 +365,30 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply font-sans;
+  }
   body {
     @apply bg-[#0a0a0f] text-foreground;
     background: radial-gradient(ellipse at top, #0f172a 0%, #0a0a0f 50%, #000000 100%);
-    min-height: 100vh;
+    min-height: 100dvh;
   }
-  html {
-    @apply font-sans;
+  main {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  main::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  main::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.4);
+    border-radius: 9999px;
+  }
+  main::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.7);
+  }
+  main::-webkit-scrollbar-track {
+    background: transparent;
   }
 }
