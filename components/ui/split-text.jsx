@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 export const SplitText = ({
   text,
   className,
+  charClassName,
   delay = 0.05,
   duration = 0.5,
 }) => {
@@ -25,7 +26,7 @@ export const SplitText = ({
                 delay: (wordIndex * word.length + charIndex) * delay,
                 ease: [0.25, 0.4, 0.25, 1],
               }}
-              className="inline-block"
+              className={cn("inline-block", charClassName)}
             >
               {char}
             </motion.span>

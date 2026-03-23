@@ -168,11 +168,16 @@ export default function Home() {
         </div>
 
         <h2 className="text-2xl md:text-4xl font-bold mb-6">
-          <SplitText
-            text="Effortless File Transfers, Simplified."
-            className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent"
-            delay={0.03}
-          />
+          <span className="md:hidden bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+            Effortless File Transfers, Simplified.
+          </span>
+          <span className="hidden md:inline">
+            <SplitText
+              text="Effortless File Transfers, Simplified."
+              charClassName="bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent"
+              delay={0.03}
+            />
+          </span>
         </h2>
         <TextGenerateEffect
           words="Welcome to the future of file sharing. Upload files seamlessly and generate custom links instantly — no sign-ups, no logins, just pure simplicity."
