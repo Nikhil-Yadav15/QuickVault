@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./componets/Navbar";
 import Footer from "./componets/footer";
-import Head from 'next/head';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -21,16 +21,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-    <Head>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-      </Head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-bl from-blue-900 to-black`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        style={{
+          background: "radial-gradient(ellipse at top, #0f172a 0%, #0a0a0f 50%, #000000 100%)",
+        }}
+      >
         <Navbar />
-        <main className="flex-grow overflow-auto">
+        <main className="flex-grow overflow-auto relative z-10">
           {children}
         </main>
-          <Footer />
+        <Footer />
       </body>
     </html>
   );

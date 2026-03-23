@@ -1,94 +1,56 @@
 "use client";
-import React from "react";
-import Popup from "reactjs-popup";
-import "@/app/forPopup.css";
+import React, { useState } from "react";
 import { QrCode } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 const QRCodePopup = ({ message }) => {
-    return(<Popup
-      trigger={
-          <button className="md:w-[50%] w-[70%] p-2 flex items-center justify-center space-x-2 text-white bg-gradient-to-r from-green-500 to-teal-500 rounded-lg hover:from-teal-500 hover:to-green-500 transition-all duration-300 my-5 hover:cursor-pointer">
-              <QrCode className="w-6 h-6" />
-              <span className="font-bold">{"Show QR Code"}</span>
-          </button>
-      }
-      position="right center"
-      modal
-      nested
-  >
-      {(close) => (
-          <div
-              style={{
-                  backgroundColor: "#1e293b", 
-                  padding: "20px",
-                  borderRadius: "12px",
-                  boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)",
-                  textAlign: "center",
-                  border: "1px solid #334155",
-                  width: "100%", 
-                  margin: "0 auto",
-              }}
-          >
+  const [open, setOpen] = useState(false);
 
-              <div
-                  style={{
-                      padding: "20px",
-                      backgroundColor: "#ffffff",
-                      borderRadius: "8px",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-                      display: "inline-block",
-                      width: "100%",
-                      maxWidth: "300px",
-                  }}
-              >
-                  <QRCodeSVG
-                      value={message}
-                      size={256}
-                      style={{
-                          width: "100%",
-                          height: "auto", 
-                      }}
-                  />
-              </div>
-
-              <p
-                  style={{
-                      marginTop: "20px",
-                      fontSize: "clamp(14px, 4vw, 16px)", 
-                      color: "#d1d5db", 
-                      fontWeight: "500",
-                      wordBreak: "break-word", 
-                  }}
-              >
-                  {message}
-              </p>
-
-              <button
-                  onClick={close}
-                  style={{
-                      marginTop: "30px",
-                      padding: "12px 24px",
-                      backgroundColor: "#3b82f6", 
-                      color: "white",
-                      border: "none",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                      fontSize: "clamp(14px, 4vw, 16px)", 
-                      fontWeight: "600",
-                      transition: "background-color 0.3s ease",
-                      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.2)",
-                      width: "100%", 
-                      maxWidth: "200px", 
-                  }}
-                  onMouseOver={(e) => (e.target.style.backgroundColor = "#2563eb")} 
-                  onMouseOut={(e) => (e.target.style.backgroundColor = "#3b82f6")} 
-              >
-                  Close
-              </button>
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <button className="md:w-[50%] w-[70%] py-2.5 px-4 flex items-center justify-center gap-2 text-white bg-gradient-to-r from-emerald-600 to-cyan-600 rounded-xl hover:from-emerald-500 hover:to-cyan-500 transition-all duration-300 my-5 cursor-pointer hover:shadow-lg hover:shadow-emerald-500/20 font-medium">
+          <QrCode className="w-5 h-5" />
+          <span>Show QR Code</span>
+        </button>
+      </DialogTrigger>
+      <DialogContent
+        className="glass-card !bg-[rgba(10,10,20,0.9)] !border-white/10 sm:max-w-md"
+        showCloseButton={true}
+      >
+        <DialogHeader>
+          <DialogTitle className="text-center text-white/90">Scan to Download</DialogTitle>
+        </DialogHeader>
+        <div className="flex flex-col items-center gap-5 py-4">
+          <div className="p-5 bg-white rounded-2xl shadow-lg">
+            <QRCodeSVG
+              value={message}
+              size={200}
+              style={{ width: "100%", height: "auto", maxWidth: "200px" }}
+            />
           </div>
-      )}
-  </Popup>);
+          <p className="text-sm text-white/50 text-center break-all px-4">
+            {message}
+          </p>
+          <Button
+            onClick={() => setOpen(false)}
+            className="w-full max-w-[200px] bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white border-0 cursor-pointer"
+            size="lg"
+          >
+            Close
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 };
 
 export default QRCodePopup;

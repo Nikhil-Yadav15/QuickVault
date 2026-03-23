@@ -4,21 +4,20 @@ import Image from 'next/image';
 
 const Navbar = () => {
   return (
-    <nav
-      className="w-full py-4 px-6 flex justify-between items-center "
-      style={{backdropFilter: 'blur(10px)', backgroundColor: 'rgba(1, 0, 0, 0.1)'}}
-    >
-      <div className="text-2xl text-amber-50 flex items-center">
+    <nav className="sticky top-0 z-50 w-full py-4 px-6 flex justify-between items-center glass border-b border-white/[0.06]">
+      <div className="text-xl font-semibold text-white/90 flex items-center">
         <NextLink href="/" passHref>
-          <div className="flex items-center cursor-pointer">
+          <div className="flex items-center cursor-pointer gap-2.5 group">
             <Image
               src="/logo.png"
-              alt="ShareVault Logo"
-              width={40}
-              height={40}
-              className="mr-2"
+              alt="QuickVault Logo"
+              width={36}
+              height={36}
+              className="group-hover:scale-110 transition-transform duration-300"
             />
-            <span>QuickVault</span>
+            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent font-bold tracking-tight">
+              QuickVault
+            </span>
           </div>
         </NextLink>
       </div>
@@ -27,37 +26,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-// <nav
-//       style={{
-//         background: 'rgba(1, 0, 0, 0.1)',
-//         height: '10vh',
-//         width: '100%',
-//         position: 'fixed',
-//         top: '0',
-//         display: 'flex',
-//         justifyContent: 'space-between',
-//         padding: '1rem',
-//         alignItems: 'center',
-//         zIndex: '1',
-//         backdropFilter: 'blur(10px)',
-//       }}
-//     >
-//       <div className="Logo text-2xl text-amber-50 flex items-center">
-//         <NextLink href="/" passHref>
-//             <div className='flex items-center'>
-
-//             <Image
-//               src="/logo.png"
-//               alt="ShareVault Logo"
-//               width={40}
-//               height={40}
-//               className="mr-2"
-//               />
-//             <span>ShareVault</span>
-//               </div>
-//         </NextLink>
-//       </div>
-//     </nav>

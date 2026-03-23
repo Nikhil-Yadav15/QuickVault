@@ -1,22 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-/* ---break---  */
 @custom-variant dark (&:is(.dark *));
 
-/* ?for card positioning  */
-
-@media (min-width: 998px){
-  #url-input::placeholder {
-    font-size: 15px;
-  }};
-
-@media (max-width: 998px){
-  #url-input::placeholder {
-    font-size: 11px;
-  }};
-
-/* ?MainBox */
+/* ===== Flip Card (preserved) ===== */
 .flip-card {
   perspective: 1000px;
   width: 100%;
@@ -30,39 +17,33 @@
   transition: transform 1.5s ease-in-out;
   transform-style: preserve-3d;
 }
-@media (min-width: 768px){
-.flip-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
-}};
-
-/* //!for horizontal */
-@media (max-width: 768px){
-.flip-card.flipped .flip-card-inner {
-  transform: rotateX(180deg);
-}
+@media (min-width: 768px) {
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
 }
 
-@media (min-width: 768px){
-.flip-card-front,
-.flip-card-back {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}}
-@media (max-width: 768px){
+@media (max-width: 768px) {
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateX(180deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .flip-card-front,
+  .flip-card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
   .mainstuff {
-    padding-left: 6%;
+    padding-left: 4%;
+    padding-right: 4%;
   }
-}
-
-@media (max-width: 768px){
-  body{
-    background: linear-gradient(to bottom, rgb(30, 58, 138), rgb(0, 0, 0));
-  }
-}
-
-@media (max-width: 768px){
-  .showFilesclass{
+  .showFilesclass {
     padding-bottom: 12%;
   }
 }
@@ -75,47 +56,19 @@
   backface-visibility: hidden;
 }
 
-@media (min-width: 768px){
-.flip-card-back {
-  transform: rotateY(180deg);
-} };
-
-@media (max-width: 768px){
-.flip-card-back {
-  transform: rotateX(180deg);
-} };
-
-/* ?DropBox */
-@keyframes rotate {
-  from{
-    --angle: 0deg;
-  }
-  to {
-    --angle: 720deg;
+@media (min-width: 768px) {
+  .flip-card-back {
+    transform: rotateY(180deg);
   }
 }
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-/* ?MainCard */
-@keyframes rotate {
-  to {
-    --angle: 360deg;
-
+@media (max-width: 768px) {
+  .flip-card-back {
+    transform: rotateX(180deg);
   }
 }
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-/* ?File-Card */
+/* ===== Animations ===== */
 @keyframes slide-out {
   from { transform: translateX(0); opacity: 1; }
   to { transform: translateX(100%); opacity: 0; }
@@ -134,7 +87,78 @@
   animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* *Scrollbar styles */
+@keyframes shiny-text {
+  0% { background-position: 250% center; }
+  100% { background-position: -250% center; }
+}
+
+.animate-shiny-text {
+  animation: shiny-text 3s linear infinite;
+}
+
+@keyframes beam {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  20% { opacity: 0.3; }
+  80% { opacity: 0.3; }
+  100% { stroke-dashoffset: -100; opacity: 0; }
+}
+
+.animate-beam {
+  stroke-dasharray: 20;
+  animation: beam 8s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.2); }
+}
+
+/* ===== Glassmorphism Utilities ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.glass-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1), 0 0 0 1px rgba(16, 185, 129, 0.1);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== Scrollbar ===== */
 .custom-scroll {
   scroll-behavior: smooth; 
 }
@@ -145,14 +169,13 @@
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(249, 115, 22, 1);
+  background: rgba(16, 185, 129, 0.5);
   border-radius: 9999px;
-  border: 2px solid transparent;
   transition: background-color 0.3s ease;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  background: rgba(16, 185, 129, 0.8);
 }
 
 .custom-scroll::-webkit-scrollbar-track {
@@ -205,85 +228,88 @@
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);}
-
-/* ---break---  */
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);}
-
-/* ---break---  */
+  --background: #0a0a0f;
+  --foreground: #f0f0f5;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #f0f0f5;
+  --popover: rgba(15, 15, 25, 0.95);
+  --popover-foreground: #f0f0f5;
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #e2e8f0;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #94a3b8;
+  --accent: rgba(16, 185, 129, 0.12);
+  --accent-foreground: #10b981;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(16, 185, 129, 0.4);
+  --chart-1: #10b981;
+  --chart-2: #06b6d4;
+  --chart-3: #8b5cf6;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+  --radius: 0.75rem;
+  --sidebar: rgba(10, 10, 15, 0.95);
+  --sidebar-foreground: #f0f0f5;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(255, 255, 255, 0.06);
+  --sidebar-accent-foreground: #e2e8f0;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: rgba(16, 185, 129, 0.4);
+}
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);}
-
-/* ---break---  */
+  --background: #0a0a0f;
+  --foreground: #f0f0f5;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #f0f0f5;
+  --popover: rgba(15, 15, 25, 0.95);
+  --popover-foreground: #f0f0f5;
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #e2e8f0;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #94a3b8;
+  --accent: rgba(16, 185, 129, 0.12);
+  --accent-foreground: #10b981;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(16, 185, 129, 0.4);
+  --chart-1: #10b981;
+  --chart-2: #06b6d4;
+  --chart-3: #8b5cf6;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+  --sidebar: rgba(10, 10, 15, 0.95);
+  --sidebar-foreground: #f0f0f5;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(255, 255, 255, 0.06);
+  --sidebar-accent-foreground: #e2e8f0;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: rgba(16, 185, 129, 0.4);
+}
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;}
+    @apply border-border outline-ring/50;
+  }
   body {
-    @apply bg-background text-foreground;}
+    @apply bg-[#0a0a0f] text-foreground;
+    background: radial-gradient(ellipse at top, #0f172a 0%, #0a0a0f 50%, #000000 100%);
+    min-height: 100vh;
+  }
   html {
-    @apply font-sans;}}
+    @apply font-sans;
+  }
+}

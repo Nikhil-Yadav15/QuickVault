@@ -8,6 +8,8 @@ import formatBytes from "../../componets/formatBytes";
 import pako from "pako";
 import JSZip from "jszip";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import BackgroundBeams from "@/components/ui/background-beams";
 
 
 export default function DownloadFile({ params }) {
@@ -56,9 +58,9 @@ export default function DownloadFile({ params }) {
 
     const handlePasswordPresent = () => {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <div className="bg-gradient-to-r from-blue-900 via-black to-blue-900 border-2 border-green-500 rounded-lg p-6 w-80 shadow-2xl hover:scale-110 hover:shadow-2xl hover:shadow-green-500 transition-all duration-300">
-                    <h2 className="text-white text-2xl mb-4 text-center">Enter Password</h2>
+            <div className="flex justify-center items-center">
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 w-96 shadow-2xl">
+                    <h2 className="text-white/90 text-2xl font-bold mb-6 text-center">Enter Password</h2>
                     <input
                         type="password"
                         value={userEntered}
@@ -68,14 +70,14 @@ export default function DownloadFile({ params }) {
                             seterror_forWrongPassword(false);
                         }}
                         placeholder="Enter the password"
-                        className={`w-full p-3 rounded-lg ${error_forWrongPassword? "bg-red-300" : "bg-white"} text-gray-700 placeholder-gray-400 mb-4 border-2 border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500`}
+                        className={`w-full p-3 rounded-xl ${error_forWrongPassword ? "bg-red-500/10 border-red-500/50" : "bg-white/5 border-white/10"} backdrop-blur-sm text-white placeholder:text-white/40 mb-4 border focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-colors`}
                     />
                     {error_forWrongPassword && <p className="text-sm text-center font-bold text-red-400 mt-1 mb-2">
                         Wrong Password!</p>}
 
-                    <button onClick={handleVerify} className="w-full py-3 hover:cursor-pointer rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition duration-200">
+                    <Button onClick={handleVerify} className="w-full py-3 cursor-pointer bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition duration-200">
                         Verify
-                    </button>
+                    </Button>
                 </div>
             </div>
         );
@@ -148,20 +150,14 @@ export default function DownloadFile({ params }) {
 
         return (
             <div
-                className="relative flex flex-col p-6 max-w-[600px] max-[600px]:w-[90%] w-[60%] rounded-xl hover:scale-[102%] hover:shadow-[-10px_10px_20px_rgba(34,197,94,0.5)] transition-all duration-500 ease-in-out pl-4 pr-4 pt-8 pb-10 custom-scroll mt-4"
-                style={{
-                    background: `linear-gradient(to bottom right, #1e3a8a, #000000) padding-box,
-            linear-gradient(var(--angle), #0f766e, #14b8a6, #0f766e) border-box`,
-                    border: "4px solid transparent",
-                    animation: "rotate 8s linear infinite",
-                }}
+                className="glass-card glass-card-hover relative flex flex-col p-6 max-w-[600px] max-[600px]:w-[90%] w-[60%] rounded-2xl transition-all duration-500 ease-in-out pl-4 pr-4 pt-8 pb-10 custom-scroll mt-4"
             >
-                <div className="sticky top-0 z-10 pb-2 text-2xl font-bold bg-gradient-to-b from-green-400 via-green-500 to-gray-500 bg-clip-text text-transparent flex flex-row  justify-between items-center border-b-2 border-green-500 mb-4 w-full">
+                <div className="sticky top-0 z-10 pb-2 text-2xl font-bold text-white/90 flex flex-row justify-between items-center border-b border-white/10 mb-4 w-full">
                     <h1>Your Files:</h1>
-                    <button onClick={() => { handleDownloadAll(files); setalld((prev) => true); }} className={`bg-green-500 hover:bg-green-600 text-white hover:cursor-pointer font-bold py-2 px-5 rounded-lg shadow-lg transition-all duration-300 ease-in-out flex items-center gap-2 max-[670px]:px-4 max-[670px]:py-1 max-[670px]:text-sm max-[670px]:mt-4`}>
+                    <Button onClick={() => { handleDownloadAll(files); setalld((prev) => true); }} className="cursor-pointer bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-5 rounded-xl shadow-lg transition-all duration-300 ease-in-out flex items-center gap-2 max-[670px]:px-4 max-[670px]:py-1 max-[670px]:text-sm max-[670px]:mt-4">
                         Download All
-                        {alld ? <BeatLoader loading={true} color="rgba(0,0,0, 1)" size={8}/> : <Download /> }
-                    </button>
+                        {alld ? <BeatLoader loading={true} color="rgba(255,255,255, 0.8)" size={8}/> : <Download /> }
+                    </Button>
 
                 </div>
 
@@ -170,21 +166,21 @@ export default function DownloadFile({ params }) {
                     {files.map((file, index) => (
                         <div
                             key={index}
-                            className="bg-gradient-to-b from-gray-200 via-gray-100 to-white mb-2 w-full p-2 border-2 flex justify-between items-center rounded-lg transition-all duration-300 ease-out hover:scale-[101%] hover:shadow-sm"
+                            className="bg-white/5 border border-white/10 rounded-xl mb-2 w-full p-3 flex justify-between items-center transition-all duration-300 ease-out hover:bg-white/10 hover:border-white/20"
                         >
                             
                             <div className="flex items-center min-w-0 flex-grow">
                                 {getFileIcon(file.filename)}
                                 <div className="pl-2 pr-2 flex items-start min-w-0">
-                                    <div className="truncate text-black pr-2">{file.filename} -</div>
-                                    <div className="text-green-800 flex-shrink-0">{formatBytes(file.file_size)}</div>
+                                    <div className="truncate text-white/90 pr-2">{file.filename} -</div>
+                                    <div className="text-emerald-400 flex-shrink-0">{formatBytes(file.file_size)}</div>
                                 </div>
                             </div>
 
                             {loadingStates[index] ? (
-                                <BeatLoader loading={true} color="rgba(0,0,0, 1)" size={8} />
+                                <BeatLoader loading={true} color="rgba(16,185,129, 1)" size={8} />
                             ) : <Download disabled={loadingStates[index]}
-                                className="w-6 h-6 text-blue-500 cursor-pointer hover:text-blue-700 hover:scale-110 transition-all duration-200 ease-out flex-shrink-0"
+                                className="w-6 h-6 text-emerald-400 cursor-pointer hover:text-emerald-300 hover:scale-110 transition-all duration-200 ease-out flex-shrink-0"
                                 onClick={() => {
                                     handleDownload(file.filename, file.urls, index);
                                 }}
@@ -201,10 +197,10 @@ export default function DownloadFile({ params }) {
 
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh] p-6">
-                <div className="bg-gradient-to-br from-purple-900 to-black  rounded-2xl p-8 border border-green-500 shadow-lg shadow-green-500">
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
                     <div className="flex flex-col items-center space-y-6">
-                        <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center animate-pulse">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
                         </div>
@@ -212,19 +208,19 @@ export default function DownloadFile({ params }) {
                             <h2 className="text-2xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
                                 Link Not Found!
                             </h2>
-                            <p className="text-red-400 max-w-md">
+                            <p className="text-white/60 max-w-md">
                                 This link has either expired or is incorrect. Please check the URL and try again.
                             </p>
                         </div>
-                        <button
+                        <Button
                             onClick={() => router.push('/')}
-                            className="hover:cursor-pointer mt-4 px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center space-x-2"
+                            className="cursor-pointer mt-4 px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-all duration-300 flex items-center space-x-2"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                             <span>Return Home</span>
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -272,16 +268,16 @@ export default function DownloadFile({ params }) {
     const override = {
         display: "block",
         margin: "20px auto",
-        borderWidth: "10px",
     };
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-gradient-to-bl from-blue-900 to-black">
-            <div className="flex-grow w-full flex items-center justify-center py-16">
+        <div className="relative min-h-screen flex flex-col">
+            <BackgroundBeams className="fixed inset-0 z-0 pointer-events-none opacity-40" />
+            <div className="relative z-10 flex-grow w-full flex items-center justify-center py-16">
                 {loading ? (
                     <div className="flex flex-col items-center gap-4">
-                        <ClipLoader loading={true} size={105} margin={15} speedMultiplier={1} color="#FFA500" cssOverride={override} />
-                        <h1 className="text-3xl font-bold text-white">Getting Your Files</h1>
+                        <ClipLoader loading={true} size={105} margin={15} speedMultiplier={1} color="#10b981" cssOverride={override} />
+                        <h1 className="text-3xl font-bold text-white/90">Getting Your Files</h1>
                     </div>
                 ) : confirmPassword ? (
                     handlePasswordPresent()
